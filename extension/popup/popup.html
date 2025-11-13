@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlixPlus Settings</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7V17L12 22L22 17V7L12 2Z" stroke="#E50914" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M12 22V12" stroke="#E50914" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M2 7L12 12L22 7" stroke="#E50914" stroke-width="2" stroke-linejoin="round"/>
+                </svg>
+                <h1>FlixPlus</h1>
+            </div>
+            <div class="version">v1.0.0</div>
+        </header>
+
+        <div class="status-card" id="statusCard">
+            <div class="status-indicator">
+                <div class="status-dot active"></div>
+                <span>Extension Active</span>
+            </div>
+            <p class="status-msg">Only works on netflix.com</p>
+        </div>
+
+        <div class="security-card" id="securityCard">
+            <div class="security-header">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 1L2 3V7C2 10.5 4.5 13.5 8 15C11.5 13.5 14 10.5 14 7V3L8 1Z" stroke="#46d369" stroke-width="1.5" stroke-linejoin="round"/>
+                    <path d="M6 8L7.5 9.5L10.5 6.5" stroke="#46d369" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="security-title">Security Monitor</span>
+            </div>
+            <div class="security-status" id="securityStatus">
+                <div class="security-item">
+                    <span>Network Protection:</span>
+                    <span class="security-value" id="networkStatus">Active</span>
+                </div>
+                <div class="security-item">
+                    <span>File Integrity:</span>
+                    <span class="security-value" id="integrityStatus">Checking...</span>
+                </div>
+                <div class="security-item">
+                    <span>Suspicious Activity:</span>
+                    <span class="security-value" id="suspiciousCount">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h2>Video Quality</h2>
+
+            <div class="setting-item">
+                <div class="setting-info">
+                    <label for="onlyMaxBitrate">Maximum Bitrate</label>
+                    <span class="setting-desc">Force highest available video & audio bitrate</span>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" id="onlyMaxBitrate">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-info">
+                    <label for="forceUHD">Force UHD/4K</label>
+                    <span class="setting-desc">Enable 4K on any screen (requires Widevine L1)</span>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" id="forceUHD">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-info">
+                    <label for="alwaysUseHDR">Always Use HDR</label>
+                    <span class="setting-desc">Force HDR/Dolby Vision when available</span>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" id="alwaysUseHDR">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h2>Audio</h2>
+
+            <div class="setting-item">
+                <div class="setting-info">
+                    <label for="useDDPandHA">Enhanced Audio</label>
+                    <span class="setting-desc">Enable Dolby Digital Plus & HE-AAC 5.1</span>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" id="useDDPandHA">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-info">
+                    <label for="useallSub">All Audio Tracks</label>
+                    <span class="setting-desc">Show all audio tracks and subtitles</span>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" id="useallSub">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h2>Other Features</h2>
+
+            <div class="setting-item">
+                <div class="setting-info">
+                    <label for="closeimsc">SUP Subtitles</label>
+                    <span class="setting-desc">Use SUP format instead of IMSC</span>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" id="closeimsc">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-info">
+                    <label for="disableHouseholdCheck">Disable Household Check</label>
+                    <span class="setting-desc">Bypass Netflix household verification</span>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" id="disableHouseholdCheck">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="debug-section">
+            <button class="debug-btn" id="showPlayerInfo">Show Player Info</button>
+            <button class="debug-btn" id="showStreamSelector">Stream Selector</button>
+        </div>
+
+        <footer>
+            <p class="warning">⚠ Use at your own risk. May violate Netflix ToS.</p>
+            <p class="info">Refresh Netflix after changing settings</p>
+        </footer>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

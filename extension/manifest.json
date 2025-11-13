@@ -1,0 +1,58 @@
+{
+  "manifest_version": 3,
+  "name": "FlixPlus - Netflix Quality Enhancer",
+  "version": "1.0.1",
+  "description": "Unlock maximum quality, HDR, and advanced audio features on Netflix",
+  "permissions": [
+    "storage",
+    "scripting",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://www.netflix.com/*"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.netflix.com/*"],
+      "js": [
+        "scripts/security-monitor.js",
+        "scripts/playercore-integrity.js",
+        "scripts/netflix-uhd.js",
+        "scripts/netflix-plus.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": false
+    },
+    {
+      "matches": ["https://www.netflix.com/*"],
+      "js": ["scripts/status-overlay.js"],
+      "css": ["styles/overlay.css"],
+      "run_at": "document_end",
+      "all_frames": false
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["scripts/cadmium-playercore.js"],
+      "matches": ["https://www.netflix.com/*"]
+    }
+  ]
+}

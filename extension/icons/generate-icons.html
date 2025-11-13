@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate FlixPlus Icons</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #141414; color: white; }
+        canvas { border: 1px solid #333; margin: 10px; }
+        .container { display: flex; flex-wrap: wrap; gap: 20px; }
+    </style>
+</head>
+<body>
+    <h1>FlixPlus Icon Generator</h1>
+    <p>Right-click each canvas and "Save image as..." to save the icons.</p>
+    <div class="container">
+        <div>
+            <h3>16x16</h3>
+            <canvas id="icon16" width="16" height="16"></canvas>
+        </div>
+        <div>
+            <h3>32x32</h3>
+            <canvas id="icon32" width="32" height="32"></canvas>
+        </div>
+        <div>
+            <h3>48x48</h3>
+            <canvas id="icon48" width="48" height="48"></canvas>
+        </div>
+        <div>
+            <h3>128x128</h3>
+            <canvas id="icon128" width="128" height="128"></canvas>
+        </div>
+    </div>
+
+    <script>
+        function drawIcon(canvas) {
+            const ctx = canvas.getContext('2d');
+            const size = canvas.width;
+            const scale = size / 128;
+
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+
+            // Background
+            ctx.fillStyle = '#141414';
+            const radius = size * 0.1875; // 24/128
+            ctx.beginPath();
+            ctx.roundRect(0, 0, size, size, radius);
+            ctx.fill();
+
+            // Scale for drawing
+            ctx.scale(scale, scale);
+
+            // Draw package icon
+            ctx.strokeStyle = '#E50914';
+            ctx.lineWidth = 6;
+            ctx.lineJoin = 'round';
+            ctx.lineCap = 'round';
+
+            // Outer package
+            ctx.beginPath();
+            ctx.moveTo(64, 24);
+            ctx.lineTo(24, 44);
+            ctx.lineTo(24, 84);
+            ctx.lineTo(64, 104);
+            ctx.lineTo(104, 84);
+            ctx.lineTo(104, 44);
+            ctx.closePath();
+            ctx.stroke();
+
+            // Vertical center line
+            ctx.beginPath();
+            ctx.moveTo(64, 104);
+            ctx.lineTo(64, 64);
+            ctx.stroke();
+
+            // Top cross line
+            ctx.beginPath();
+            ctx.moveTo(24, 44);
+            ctx.lineTo(64, 64);
+            ctx.lineTo(104, 44);
+            ctx.stroke();
+
+            // Center dot
+            ctx.fillStyle = '#E50914';
+            ctx.beginPath();
+            ctx.arc(64, 64, 8, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        // Draw all icon sizes
+        ['icon16', 'icon32', 'icon48', 'icon128'].forEach(id => {
+            const canvas = document.getElementById(id);
+            drawIcon(canvas);
+        });
+    </script>
+</body>
+</html>
